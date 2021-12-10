@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+<head>
+    <title>Loan Approval</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        
+        <legend>Input Values:</legend>
+        
+        Gender:
+        <input type="radio" id='Male' name='gender' value='Male' required>
+        <label for="Male">Male</label>
+        <input type="radio" id='Female' name='gender' value='Female' required>
+        <label for="Female">Female</label>
+        <br>
+        <br>
+        
+        Married:
+        <input type="radio" id='YesMarried' name='married' value='Yes' required>
+        <label for="YesMarried">Yes</label>
+        <input type="radio" id='NoMarried' name='married' value='No' required>
+        <label for="NoMarried">No</label>
+        <br>
+        <br> 
+        
+        Dependents:
+        <input name="dependents" type="number" step=1 min='0' max='10' required>
+        <br>
+        <br>
+        
+        Education:
+        <input type="radio" id='Graduate' name='education' value='Graduate' required>
+        <label for="Graduate">Graduate</label>
+        <input type="radio" id='NotGraduate' name='education' value='Not Graduate' required>
+        <label for="NotGraduate">Not Graduate</label>
+        <br>
+        <br> 
+        
+        Self Employed:
+        <input type="radio" id='YesSelf' name='self_employed' value='Yes' required>
+        <label for="YesSelf">Yes</label>
+        <input type="radio" id='NoSelf' name='self_employed' value='No' required>
+        <label for="No">No</label>
+        <br>
+        <br> 
+        
+        Applicant Income:
+        <input name="income" type="number" step=1 min='0' required>
+        <br>
+        <br>
+        
+        Co-Applicant Income:
+        <input name="coincome" type="number" step=1 min='0' required>
+        <br>
+        <br>
+        
+        Loan Amount:
+        <input name="amount" type="number" step=1 min='0' required>
+        <br>
+        <br>
+        
+        Loan Term:
+        <input name="term" type="number" step=1 min='0' required>
+        <br>
+        <br>
+        
+        Credit History:
+        <input type="radio" id='YesCredit' name='history' value='1.0' required>
+        <label for="YesCredit">Yes</label>
+        <input type="radio" id='NoCredit' name='history' value='0.0' required>
+        <label for="NoCredit">No</label>
+        <br>
+        <br> 
+        
+        Property Area:
+        <input type="radio" id='Urban' name='area' value='Urban' required>
+        <label for="Urban">Urban</label>
+        <input type="radio" id='Semiurban' name='area' value='Semiurban' required>
+        <label for="Semiurban">Semiurban</label>
+        <input type="radio" id='Rural' name='area' value='Rural' required>
+        <label for="Rural">Rural</label>
+        <br>
+        <br> 
+    
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        Predicted result of application:
+        <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+</html>
