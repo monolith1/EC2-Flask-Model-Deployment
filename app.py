@@ -16,13 +16,9 @@ def to_dense(x):
     return x.toarray()
 to_dense_transformer = FunctionTransformer(to_dense)
 
-def to_nan(x):
-    return x.replace(0, np.nan)
-to_nan_transformer = FunctionTransformer(to_nan)
-
-def log_transform(x):
-    return np.log(x+1)
-log_transformer = FunctionTransformer(log_transform)
+def credit_nan(x):
+    return x.replace(np.nan, 0)
+credit_nan_transformer = FunctionTransformer(credit_nan)
 
 # Use pickle to load in the pre-trained model.
 
@@ -57,21 +53,36 @@ def main():
                                        columns=['Gender', 'Married', 'Dependents', 'Education', 'Self_Employed',
                                                'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount',
                                                'Loan_Amount_Term', 'Credit_History', 'Property_Area'])
-        prediction = model.predict(input_variables)[0]
-        return flask.render_template('main.html',
-                                     original_input={'Gender': gender,
-                                                     'Married': married,
-                                                     'Dependents': dependents,
-                                                     'Education': education,
-                                                     'Self_Employed' : self_employed,
-                                                     'ApplicantIncome': income,
-                                                     'CoapplicantIncome': coincome,
-                                                     'LoanAmount': amount,
-                                                     'Loan_Amount_Term': term,
-                                                     'Credit_History': history,
-                                                     'Property_Area' : area},
-                                     result=prediction,
-                                     )
+        if model.predict(input_variables)[0] == 1:
+            return flask.render_template('main.html',
+                                         original_input={'Gender': gender,
+                                                         'Married': married,
+                                                         'Dependents': dependents,
+                                                         'Education': education,
+                                                         'Self_Employed' : self_employed,
+                                                         'ApplicantIncome': income,
+                                                         'CoapplicantIncome': coincome,
+                                                         'LoanAmount': amount,
+                                                         'Loan_Amount_Term': term,
+                                                         'Credit_History': history,
+                                                         'Property_Area' : area},
+                                         result='Approved',
+                                         )
+        elif model.predict(input_variables)[0] == 0:
+            return flask.render_template('main.html',
+                                         original_input={'Gender': gender,
+                                                         'Married': married,
+                                                         'Dependents': dependents,
+                                                         'Education': education,
+                                                         'Self_Employed' : self_employed,
+                                                         'ApplicantIncome': income,
+                                                         'CoapplicantIncome': coincome,
+                                                         'LoanAmount': amount,
+                                                         'Loan_Amount_Term': term,
+                                                         'Credit_History': history,
+                                                         'Property_Area' : area},
+                                         result='Denied',
+                                         )
 
 # Run the app
 

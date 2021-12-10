@@ -36,7 +36,13 @@ form {
         <br> 
         
         Dependents:
-        <input name="dependents" type="number" step=1 min='0' max='10' required>
+       
+        <input type="radio" id='1' name='dependents' value='1' required>
+        <label for="1">1</label>
+        <input type="radio" id='2' name='dependents' value='2' required>
+        <label for="2">2</label>
+        <input type="radio" id='3+' name='dependents' value='3+' required>
+        <label for="3+">3+</label>
         <br>
         <br>
         
@@ -104,4 +110,13 @@ form {
         <p style="font-size:50px">{{ result }}</p>
     {% endif %}
 </div>
+<div class='hyperlink' align='center'>
+    <br>
+    @monolith1
+    <br>
+    <a href='https://github.com/monolith1'>github</a>
+    <br>
+    <a href='https://github.com/monolith1/lhl_model_deployment'>github repo</a>
+    <br>
+    <a href='https://twitter.com/ritesritesrites'>twitter</a>
 </html>
