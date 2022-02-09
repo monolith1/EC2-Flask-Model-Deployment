@@ -35,4 +35,4 @@ This repository contains the following files:
 * **templates** contains the HTML file for the landing page.
 * **ExplorationAndModeling.ipynb** was used to perform EDA, train, and optimize the model.
 * **LoanPredictionDeployment.pptx** contains presentation slides detailing the project.
-* **app.py ** contains the Flask API and application logic.
+* **app.py** contains the Flask API and application logic.
