@@ -2,7 +2,7 @@
 
 Deployment of an ML model to an Amazon EC2 instance using Flask, with a basic HMTL web interface for making individual predictions.
 
-![Header Image](https://drive.google.com/file/d/1N3XxtvB9k_SPasBcBUY5-SnkIl1HytB9/view?usp=sharing)
+![Header Image](header_img.jpg 'Application Screenshot')
  
 ## Data
 
